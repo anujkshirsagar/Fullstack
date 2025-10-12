@@ -1,0 +1,27 @@
+<html>
+    <script>
+        function populateDiv(){
+            const a=document.getElementById("firstnumber").value;
+            const b=document.getElementById("secondnumber").value;
+            fetch("https://sum-server.100xdevs.com/sum?a=" +a+"&b=" + b)
+           .then(function(response)
+        {
+            response.text()
+            .then(function(ans)
+        {
+            console.log(ans);
+            document.getElementById("finalsum").innerHTML=ans;
+        })
+        });
+        
+
+        } 
+
+    </script>
+    <body>
+        <input id="firstnumber" type="text"placeholder="first number"></input>
+           <input id="secondnumber" type="text"placeholder="second number"></input>
+        <button onclick="populateDiv()">calculate </button><br></br>
+        <div id="finalSum">hi there</div>
+    </body>
+</html>

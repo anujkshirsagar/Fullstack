@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+        <title>replit</title>
+        <link
+         href="style.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+<body>
+    <script>
+        function getanimaldata()
+        {
+           const response = fetch("https://fakerapi.it/api/v1/persons")
+           console.log(response);
+        }
+    </script>
+    <button onclick="getanimaldata()">Get animal data</button>
+</body>
+</HTML>
