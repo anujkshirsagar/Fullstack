@@ -1,24 +1,53 @@
+<!DOCTYPE html>
 <html>
-    <script>
-    function addtodo(){
-        const title =document.getElementById("title").value;
-        const description=document.getElementById("description").value;
-        const outerdiv =document.createElement("div");
-        outerdiv.innerHtml= "title";
-        document.getElementById("container").appendChild(outerdiv);
-        //document.getElementById("container").innerHTML=`<div>
-        // <div>${title}</div>
-         //   <div>${description}</div>
-           // <button>mark as done</button>
-            //</div>`
-    }
-    </script>
+   <body>
     <div>
         <input id ="title" type="text" placeholder="title"></input>
         <input id ="description"type="text" placeholder="description"></input>
-        <button onclick="addtodo()">Add todo</button>
+        
         <div id="container">
           
         </div>
     </div>
+    <script>
+       
+            function createChild(title,description,id){
+                const child = document.createElement("div");
+                const firstGrandChild = document.createElement("div");
+                firstGrandChild.innerHTML = title;
+                child.appendChild(firstGrandChild);
+
+                const secondGrandChild = document.createElement("div");
+                secondGrandChild.innerHTML= description;
+                child.appendChild(secondGrandChild);
+
+                const thirdGrandChild = document.createElement("button");
+                thirdGrandChild.innerHTML = "Mark as done!";
+                thirdGrandChild.setAttribute("onclick",`markAsDone(${id})`);
+                child.appendChild(thirdGrandChild);
+                child.setAttribute("id", id);
+                
+                return child;
+
+            }
+        function updateDomAccToState(state){
+           const parent= document.getElementById("container");
+           parent.innerHtml="";
+            for(let i=0;i<state.length;i++){
+                const child=createChild(state[i].title,state[i].description,state[i].id);
+                parent.appendChild(child);
+            }
+        }
+        updateDomAccToState([{
+            title:"go to gym",
+            description:"got to gym from 5-7",
+            id:1
+        },
+    {
+           title:"go to gym1",
+            description:"got to gym from 5-7",
+            id:2  
+    }])
+        </script>
+        </body>
 </html>
