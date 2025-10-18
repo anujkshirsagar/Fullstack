@@ -19,7 +19,7 @@ router.post('/signup',(req,res)=>{
 router.post('/courses',adminMiddleware,async (req,res)=>{
     const title =req.body.title;
     const description =req.body.description;
-    const imagelink =req.body.imagelink;
+    const imageLink =req.body.imagelink;
     const price=req.body.price;
     
     const newCourse=await Course.create({
@@ -32,5 +32,11 @@ router.post('/courses',adminMiddleware,async (req,res)=>{
     res.json({
         message:'course created succesfully',courseId:newCourse.__id
     })
+});
+router.get('/courses',adminMiddleware,async(req,res)=>{
+   const response=await Course.find({});
+   res.json({
+    courses:response
+   })
 });
 module.exports=router;

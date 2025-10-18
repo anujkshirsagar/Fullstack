@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use("/admin",adminRoutes)
 app.use("/user",userRoutes)
 
-const PORT=3000;
+const PORT=3300;
 
 app.listen(PORT,()=>{
     console.log('server is running on port ${PORT}');
