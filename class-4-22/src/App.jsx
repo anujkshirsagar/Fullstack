@@ -14,7 +14,7 @@ function App() {
     
   function CustomButton(props){
     function onClickHandler(){
-      props.setCount(props.count+1);
+      props.setCount(4);
     }
     return<button onClick={onClickHandler}>
       counter{props.count}
