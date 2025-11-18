@@ -4,7 +4,7 @@
  import './App.css'
  import { CountContext } from './assets/CountContext'
  import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
- import { countAtom } from './store/atoms/count'
+ import { countAtom ,evenSelector} from './store/atoms/count'
 
 //context api is used to teleport the componments input to any component without sending to child 
  //to get rid of p drill we use context api
@@ -51,7 +51,7 @@ function Buttons({setCount}){
 
 
 //State management using recoil
-
+/*
 
 function App() {
   
@@ -87,13 +87,59 @@ function CountRenderer(){
    // useSetRecoil state  gives us setCount which updates the default atom value more less 
      return (<div>
      <button onClick={()=>{
-       setCount(count => count+1) // you will have to create a new value as count is not passed  
+       setCount(count => count+1)
+        // you will have to create a new value as count is not passed  
      }}>Increment</button>
      <button onClick={()=>{
       setCount(count=> count - 1 )
     }}> Decrement</button>
     </div>)
+}*/
+
+//Selector=it is used to rerender when the dependencies changes ex:count
+
+
+
+function App() {
+  
+  return (
+    <>
+    <RecoilRoot>
+      <Count></Count>
+    <Buttons></Buttons>
+    <Even></Even>
+    </RecoilRoot>
+    </>
+  )
 }
+
+
+function Count(){
+  const count = useRecoilValue(countAtom);
+  return <div>
+    {count}
+  </div>  
+}
+
+function Buttons(){
+  const setCount = useSetRecoilState(countAtom);
+  return <div>
+    <button onClick={()=>{
+      setCount(count=> count + 1);
+    }}>Increase</button>
+    <button onClick={()=>{
+      setCount(count => count - 1);
+    }}>Decrease</button>
+  </div>
+}
+
+function Even(){
+ 
+ const EvenNumber = useRecoilValue(evenSelector);
+
+return EvenNumber ? <div><p>The no is even</p></div> : null;
+}
+ 
 
 
 export default App
